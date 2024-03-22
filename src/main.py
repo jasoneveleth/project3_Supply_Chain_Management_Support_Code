@@ -3,13 +3,13 @@ from pathlib import Path
 from model_timer import Timer 
 from lpinstance import LPSolver,dietProblem
 import json
+import math
 
 
 # Stencil created by Anirudh Narsipur March 2023
 
-
 def main(args):
-    dietProblem()
+    # dietProblem()
 
     filename = Path(args.input_file).name
     timer = Timer()
@@ -21,7 +21,7 @@ def main(args):
     printSol = {
         "Instance" : filename,
         "Time" : timer.getElapsed(),
-        "Result" : 0 , 
+        "Result" : math.ceil(sol.get_objective_value()),
         "Solution" : "OPT"
     }
 

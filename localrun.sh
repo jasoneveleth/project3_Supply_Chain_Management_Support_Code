@@ -9,6 +9,9 @@ then
 	echo "Usage: `basename $0` <input>"
 	exit $E_BADARGS
 fi
-	
-export CP_SOLVER_EXEC=/Applications/CPLEX_Studio2211/cpoptimizer/bin/arm64_osx/cpoptimizer
+
+eval "$(conda shell.bash hook)"
+conda activate ibm-cp-cplex
+
+export DOCPLEX_COS_LOCATION=/Applications/CPLEX_Studio2211
 python src/main.py "$1" 2> >(grep -v 'RuntimeWarning: docplex.cp is supported by Python versions' | grep -v 'warnings.warn(msg, RuntimeWarning)') | grep -v 'Using cp installation at'
